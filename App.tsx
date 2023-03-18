@@ -13,7 +13,7 @@ import {
   Archivo_600SemiBold,
 } from "@expo-google-fonts/archivo";
 
-import { Home } from "./src/screens/Home";
+import { Routes } from "./src/routes";
 
 import theme from "./src/styles/theme";
 
@@ -29,9 +29,10 @@ export default function App() {
   if (!fontsLoaded) {
     return <></>;
   }
+
   return (
     <ThemeProvider theme={theme}>
-      <Home />
+      <Routes />
     </ThemeProvider>
   );
 }

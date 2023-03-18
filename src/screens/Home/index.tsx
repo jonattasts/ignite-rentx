@@ -1,12 +1,20 @@
 import React from "react";
 import { StatusBar } from "react-native";
 import { CarList, Container, Header, HeaderContent, TotalCars } from "./styles";
-
-import Logo from "../../assets/logo.svg";
 import { RFValue } from "react-native-responsive-fontsize";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+
 import { Car } from "../../components/Car";
 
+import Logo from "../../assets/logo.svg";
+
+import { RootStackParamList } from "../../routes/types.routes";
+
+
 export function Home() {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
   const carData1 = {
     brand: "Audi",
     name: "RS 5 Coupé",
@@ -24,6 +32,10 @@ export function Home() {
     thumbnail:
       "https://www.pngkit.com/png/full/237-2375888_porsche-panamera-s.png",
   };
+
+  function handleCarDetails() {
+    navigation.navigate("CarDetails");
+  }
 
   return (
     <Container>
@@ -44,7 +56,9 @@ export function Home() {
       <CarList
         data={[carData1, carData2]}
         keyExtractor={(item) => String(Math.random())}
-        renderItem={({ item }) => <Car data={item} onPress={() => {}} />}
+        renderItem={({ item }) => (
+          <Car data={item} onPress={handleCarDetails} />
+        )}
       />
     </Container>
   );
