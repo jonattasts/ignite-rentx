@@ -16,16 +16,9 @@ import {
   CarImage,
 } from "./styles";
 
-interface CarData {
-  brand: string;
-  name: string;
-  period: string;
-  price: number;
-  thumbnail: string;
-}
-
+import { CarDTO } from "../../dtos/CarDTO";
 interface Props extends RectButtonProps {
-  data: CarData;
+  data: CarDTO;
 }
 
 export function Car({ data, ...rest }: Props) {
@@ -37,8 +30,8 @@ export function Car({ data, ...rest }: Props) {
 
         <About>
           <Rent>
-            <Period>{data.period}</Period>
-            <Price>{`R$ ${data.price}`}</Price>
+            <Period>{data.rent.period}</Period>
+            <Price>{`R$ ${data.rent.price}`}</Price>
           </Rent>
 
           <Type>
