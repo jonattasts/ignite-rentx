@@ -29,7 +29,7 @@ export function ImageSlider({ imagesUrl }: Props) {
           <CarImageWrapper>
             <CarImage
               source={{
-                uri: imagesUrl[0],
+                uri: item,
               }}
               resizeMode="contain"
             />
