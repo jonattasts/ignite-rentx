@@ -2,6 +2,7 @@ import React from "react";
 import { Feather } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
 
+import { generateInterval } from "./generateInterval";
 import { ptBR } from "./localeConfig";
 
 import {
@@ -35,7 +36,7 @@ interface CalendarProps {
   onDayPress: DateCallbackHandler;
 }
 
-function Calendar() {
+function Calendar({ markedDates, onDayPress }: CalendarProps) {
   const theme = useTheme();
 
   return (
@@ -67,8 +68,11 @@ function Calendar() {
       }}
       firstDay={1}
       minDate={new Date()}
+      markingType="period"
+      markedDates={markedDates}
+      onDayPress={onDayPress}
     />
   );
 }
 
-export { Calendar };
+export { Calendar, MarkedDateProps, DayProps, generateInterval };
