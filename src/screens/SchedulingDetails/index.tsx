@@ -80,6 +80,8 @@ export function SchedulingDetails() {
     await api.post("/schedules_byuser", {
       user_id: 1,
       car: car,
+      startDate: rentalPeriod.start,
+      endDate: rentalPeriod.end,
     });
 
     api
@@ -183,6 +185,8 @@ export function SchedulingDetails() {
           title="Alugar agora"
           color={theme.colors.success}
           onPress={handleConfirmRental}
+          disabled={loading}
+          loading={loading}
         />
       </Footer>
     </Container>

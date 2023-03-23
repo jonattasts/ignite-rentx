@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Alert, StatusBar } from "react-native";
+import { StatusBar } from "react-native";
 import { useTheme } from "styled-components";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { format } from "date-fns";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 import { BackButton } from "../../components/BackButton";
 import { Button } from "../../components/Button";
@@ -14,7 +15,6 @@ import {
 } from "../../components/Calendar";
 
 import ArrowSvg from "../../assets/arrow.svg";
-import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../routes/types.routes";
 
 import { getPlatformDate } from "../../utils/getPlatformDate";
@@ -59,14 +59,10 @@ export function Scheduling() {
   const { car } = route.params as Params;
 
   function handleConfirmRental() {
-    if (!rentalPeriod.startFormatted || !rentalPeriod.endFormatted) {
-      Alert.alert("Selecione o intervalo para alugar!");
-    } else {
-      navigation.navigate("SchedulingDetails", {
-        car,
-        dates: Object.keys(markedDates),
-      });
-    }
+    navigation.navigate("SchedulingDetails", {
+      car,
+      dates: Object.keys(markedDates),
+    });
   }
 
   function handleChangeDate(date: DayProps) {
@@ -138,7 +134,11 @@ export function Scheduling() {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" onPress={handleConfirmRental} />
+        <Button
+          title="Confirmar"
+          onPress={handleConfirmRental}
+          disabled={!rentalPeriod.startFormatted}
+        />
       </Footer>
     </Container>
   );
