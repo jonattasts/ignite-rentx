@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Alert } from "react-native";
 import { useTheme } from "styled-components";
 import { Feather } from "@expo/vector-icons";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { format } from "date-fns";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 import { Accessory } from "../../components/Accessory";
 import { BackButton } from "../../components/BackButton";
@@ -10,9 +13,11 @@ import { ImageSlider } from "../../components/ImageSlider";
 import { Button } from "../../components/Button";
 
 import { getAccessoryIcon } from "../../utils/getAccessoryIcon";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { getPlatformDate } from "../../utils/getPlatformDate";
 import { RootStackParamList } from "../../routes/types.routes";
 import { CarDTO } from "../../dtos/CarDTO";
+
+import { api } from "../../services/api";
 
 import {
   Container,
@@ -39,8 +44,6 @@ import {
   RentalPriceQuota,
   RentalPriceTotal,
 } from "./styles";
-import { format } from "date-fns";
-import { getPlatformDate } from "../../utils/getPlatformDate";
 
 interface Params {
   car: CarDTO;
@@ -53,6 +56,7 @@ interface RentalPeriod {
 }
 
 export function SchedulingDetails() {
+  const [loading, setLoading] = useState(false);
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>(
     {} as RentalPeriod
   );
@@ -63,8 +67,30 @@ export function SchedulingDetails() {
   const { car, dates } = route.params as Params;
   const rentTotal = Number(dates.length * car.rent.price);
 
-  function handleConfirmRental() {
-    navigation.navigate("Confirmation");
+  async function handleConfirmRental() {
+    setLoading(true);
+
+    const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`);
+
+    const unavailable_dates = [
+      ...schedulesByCar.data.unavailable_dates,
+      ...dates,
+    ];
+
+    api
+      .put(`/schedules_bycars/${car.id}`, {
+        id: car.id,
+        unavailable_dates,
+      })
+      .then(() => {
+        navigation.navigate("Confirmation");
+      })
+      .catch((erro) => {
+        console.log(erro);
+        setLoading(false);
+
+        Alert.alert("Não foi possível confirmar o agendamento.");
+      });
   }
 
   useEffect(() => {
