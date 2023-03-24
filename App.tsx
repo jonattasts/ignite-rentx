@@ -12,10 +12,13 @@ import {
   Archivo_500Medium,
   Archivo_600SemiBold,
 } from "@expo-google-fonts/archivo";
+import * as SplashScreen from "expo-splash-screen";
 
 import { Routes } from "./src/routes";
 
 import theme from "./src/styles/theme";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -27,7 +30,7 @@ export default function App() {
   });
 
   if (!fontsLoaded) {
-    return <></>;
+    return null;
   }
 
   return (
