@@ -86,6 +86,7 @@ export function MyCars() {
           translucent
           backgroundColor="transparent"
         />
+
         <BackButton onPress={handleBack} color={theme.colors.shape} />
 
         <Title>

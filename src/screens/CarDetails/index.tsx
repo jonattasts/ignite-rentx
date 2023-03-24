@@ -1,4 +1,5 @@
 import React from "react";
+import { StatusBar } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 
@@ -45,6 +46,12 @@ export function CarDetails() {
   return (
     <Container>
       <Header>
+        <StatusBar
+          barStyle="dark-content"
+          translucent
+          backgroundColor="transparent"
+        />
+
         <BackButton onPress={() => navigation.goBack()} />
       </Header>
 
