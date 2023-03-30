@@ -7,6 +7,7 @@ import { parseISO, format } from "date-fns";
 
 import { BackButton } from "../../components/BackButton";
 import { Load } from "../../components/Load";
+import { LoadAnimation } from "../../components/LoadAnimation";
 
 import { Car } from "../../components/Car";
 import { CarDTO } from "../../dtos/CarDTO";
@@ -98,7 +99,7 @@ export function MyCars() {
         <SubTitle>Conforto, segurança e praticidade.</SubTitle>
       </Header>
       {loading ? (
-        <Load />
+        <LoadAnimation />
       ) : (
         <Content>
           <Appointments>
