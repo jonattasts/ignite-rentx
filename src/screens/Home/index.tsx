@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { StatusBar } from "react-native";
+import { BackHandler, StatusBar, ToastAndroid } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
-import { useNavigation } from "@react-navigation/native";
+import {
+  StackActions,
+  useNavigation,
+  useNavigationState,
+} from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
@@ -28,7 +32,15 @@ export function Home() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const [cars, setCars] = useState<CarDTO[]>();
   const [loading, setLoading] = useState(true);
+  const [exitApp, setExitApp] = useState(false);
   const theme = useTheme();
+  const navigationState = useNavigationState((state) => state);
+  const showToast = () => {
+    ToastAndroid.show(
+      "Pressione novamente para sair do App!",
+      ToastAndroid.LONG
+    );
+  };
 
   function handleCarDetails(car: CarDTO) {
     navigation.navigate("CarDetails", { car: car });
@@ -53,6 +65,25 @@ export function Home() {
   useEffect(() => {
     fetchCars();
   }, []);
+
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", () => {
+      if (navigationState.index === 0) {
+        if (exitApp) {
+          setExitApp(false);
+          BackHandler.exitApp();
+        } else {
+          showToast();
+          setExitApp(true);
+        }
+      } else {
+        setExitApp(false);
+        navigation.dispatch(StackActions.pop(1));
+      }
+
+      return true;
+    });
+  }, [navigationState, exitApp]);
 
   return (
     <Container>
