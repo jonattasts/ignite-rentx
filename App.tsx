@@ -1,5 +1,3 @@
-import "react-native-gesture-handler";
-
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import {
