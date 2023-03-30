@@ -33,8 +33,10 @@ export function Home() {
   const [cars, setCars] = useState<CarDTO[]>();
   const [loading, setLoading] = useState(true);
   const [exitApp, setExitApp] = useState(false);
-  const theme = useTheme();
   const navigationState = useNavigationState((state) => state);
+
+  const theme = useTheme();
+
   const showToast = () => {
     ToastAndroid.show(
       "Pressione novamente para sair do App!",
@@ -113,9 +115,11 @@ export function Home() {
         />
       )}
 
-      <MyCarsButton onPress={handleOpenMyCars}>
-        <Ionicons name="ios-car-sport" size={32} color={theme.colors.shape} />
-      </MyCarsButton>
+      {!loading && (
+        <MyCarsButton onPress={handleOpenMyCars}>
+          <Ionicons name="ios-car-sport" size={32} color={theme.colors.shape} />
+        </MyCarsButton>
+      )}
     </Container>
   );
 }
