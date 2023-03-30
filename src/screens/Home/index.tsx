@@ -7,11 +7,11 @@ import {
   useNavigationState,
 } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
 
 import { Car } from "../../components/Car";
 import { LoadAnimation } from "../../components/LoadAnimation";
+import { AnimatedFloatingButton } from "../../components/AnimatedFloatingButton";
 
 import Logo from "../../assets/logo.svg";
 import { RootStackParamList } from "../../routes/types.routes";
@@ -25,7 +25,6 @@ import {
   Header,
   HeaderContent,
   TotalCars,
-  MyCarsButton,
 } from "./styles";
 
 export function Home() {
@@ -116,9 +115,10 @@ export function Home() {
       )}
 
       {!loading && (
-        <MyCarsButton onPress={handleOpenMyCars}>
-          <Ionicons name="ios-car-sport" size={32} color={theme.colors.shape} />
-        </MyCarsButton>
+        <AnimatedFloatingButton
+          icon="ios-car-sport"
+          onPress={handleOpenMyCars}
+        />
       )}
     </Container>
   );
