@@ -27,25 +27,11 @@ export function AnimatedFloatingButton({ onPress, icon }: animationProps) {
   const animatedButtonStyleAnimation = useAnimatedStyle(() => {
     return {
       transform: [
-        {
-          translateY: interpolate(
-            positionY.value,
-            [0, 50],
-            [0, -50],
-            Extrapolate.CLAMP
-          ),
-        },
-        {
-          translateX: interpolate(
-            positionX.value,
-            [0, 50],
-            [0, -50],
-            Extrapolate.CLAMP
-          ),
-        },
-      ],
-    };
-  });
+        { translateX: positionX.value },
+        { translateY: positionY.value }
+      ]
+    }
+  })
 
   const onGestureEvent = useAnimatedGestureHandler({
     onStart(event, ctx: any) {
