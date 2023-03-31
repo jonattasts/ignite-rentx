@@ -1,8 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import Animated, {
-  Extrapolate,
-  interpolate,
   useAnimatedGestureHandler,
   useAnimatedStyle,
   useSharedValue,
