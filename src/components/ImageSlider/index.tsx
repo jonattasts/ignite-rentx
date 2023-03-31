@@ -4,8 +4,8 @@ import {
   CarImage,
   CarImageWrapper,
   Container,
-  ImageIndex,
   ImageIndexes,
+  SliderBullet,
 } from "./styles";
 
 interface Props {
@@ -29,7 +29,11 @@ export function ImageSlider({ imagesUrl }: Props) {
     <Container>
       <ImageIndexes>
         {imagesUrl.map((url, index) => (
-          <ImageIndex key={String(index)} active={index === imageIndex} />
+          <SliderBullet
+            key={String(index)}
+            isFirst={index === 0}
+            active={index === imageIndex}
+          />
         ))}
       </ImageIndexes>
 
