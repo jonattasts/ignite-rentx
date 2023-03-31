@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { StatusBar, FlatList } from "react-native";
 import { useTheme } from "styled-components";
 import { useNavigation } from "@react-navigation/core";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { AntDesign } from "@expo/vector-icons";
-import { parseISO, format } from "date-fns";
 
 import { BackButton } from "../../components/BackButton";
 import { Load } from "../../components/Load";
@@ -12,6 +12,7 @@ import { LoadAnimation } from "../../components/LoadAnimation";
 import { Car } from "../../components/Car";
 import { CarDTO } from "../../dtos/CarDTO";
 import { api } from "../../services/api";
+import { RootStackParamList } from "../../routes/types.routes";
 
 import {
   Container,
@@ -41,7 +42,7 @@ export function MyCars() {
   const [loading, setLoading] = useState(true);
   const [isAtEndList, setIsAtEndList] = useState(false);
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const theme = useTheme();
 
   function handleBack() {

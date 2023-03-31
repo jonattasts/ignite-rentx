@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Text } from "react-native";
 import { useNavigation } from "@react-navigation/core";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { StackActions } from "@react-navigation/native";
 import Animated, {
   Extrapolate,
@@ -14,11 +15,12 @@ import * as SplashScreen from "expo-splash-screen";
 
 import BrandSvg from "../../assets/brand.svg";
 import LogoSvg from "../../assets/logo.svg";
+import { RootStackParamList } from "../../routes/types.routes";
 
 import { Container } from "./styles";
 
 export function Splash() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const splashAnimation = useSharedValue(0);
 
   const brandStyle = useAnimatedStyle(() => {
