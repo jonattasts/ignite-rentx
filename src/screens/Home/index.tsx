@@ -19,13 +19,7 @@ import { RootStackParamList } from "../../routes/types.routes";
 import { CarDTO } from "../../dtos/CarDTO";
 import { api } from "../../services/api";
 
-import {
-  CarList,
-  Container,
-  Header,
-  HeaderContent,
-  TotalCars,
-} from "./styles";
+import { CarList, Container, Header, HeaderContent, TotalCars } from "./styles";
 
 export function Home() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -79,7 +73,9 @@ export function Home() {
         }
       } else {
         setExitApp(false);
-        navigation.dispatch(StackActions.pop(1));
+        if (navigation.canGoBack()) {
+          navigation.goBack();
+        }
       }
 
       return true;
