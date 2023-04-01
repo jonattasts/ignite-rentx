@@ -6,10 +6,8 @@
       "brand": "Audi",
       "name": "RS 5 Coupé",
       "about": "Equipado com motor 2.9 V6 TFSI de 450 cv de potência e 61,2 kgfm de torque, o esportivo chega com preço sugerido R$ 556.990 e a missão de reforçar a presença da família RS no país. A marca destaca a evolução vivida na comparação com a linhagem anterior, principalmente em termos de eficiência energética e performance graças à redução de peso de 60 quilos e ao trabalho mais apurado na aerodinâmica. O carro ainda tem sistema de tração nas quatro rodas Quattro com diferencial traseiro esportivo de série. De acordo com a Audi, ele faz o mesmo em 3,8 segundos na Sportback.",
-      "rent": {
         "period": "Ao dia",
-        "price": 120
-      },
+      "price": 120,
       "fuel_type": "electric",
       "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/1.png",
       "accessories": [
@@ -49,10 +47,8 @@
       "brand": "Porsche",
       "name": "Panamera",
       "about": "O Panamera é um automóvel de luxo coupé com porte grande. Tem motorização dianteira V6 e V8. A tração é integral com uma caixa PDK de sete mudanças e dupla embreagem.",
-      "rent": {
         "period": "Ao dia",
-        "price": 340
-      },
+      "price": 340,
       "fuel_type": "gasoline_motor",
       "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/2.png",
       "accessories": [
@@ -91,10 +87,8 @@
       "brand": "Chevrolet",
       "name": "Corvette Z06",
       "about": "O Chevrolet Corvette Z06 inclui freios Brembo de alto desempenho com pinças maiores no conjunto dianteiro, itens aerodinâmicos com capô de fibra de carbono, suspensão para alto desempenho.",
-      "rent": {
         "period": "Ao dia",
-        "price": 620
-      },
+      "price": 620,
       "fuel_type": "gasoline_motor",
       "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/3.png",
       "accessories": [
@@ -134,10 +128,8 @@
       "brand": "Lamborghini",
       "name": "Huracan",
       "about": "Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.",
-      "rent": {
         "period": "Ao dia",
-        "price": 120
-      },
+      "price": 120,
       "fuel_type": "electric_motor",
       "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/4.png",
       "accessories": [
@@ -177,10 +169,8 @@
       "brand": "volvo",
       "name": "XC40",
       "about": "A Poderosa Combinação de um Motor Elétrico de Alto Desempenho e um Motor a Combustão. Compacto e Inovador. Com Design Expressivo, Tecnologias Intuitivas e Estilo Urbano.",
-      "rent": {
         "period": "Ao dia",
-        "price": 120
-      },
+      "price": 120,
       "fuel_type": "gasoline_motor",
       "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/5.png",
       "accessories": [
@@ -220,10 +210,8 @@
       "brand": "mitsubishi",
       "name": "Lancer",
       "about": "Mitsubishi Lancer é um belo e agressivo carro. Além do mais, ele encanta pelo conforto e pela eficiência. Bastante firme e estável para dirigir com tranquilidade e segurança.",
-      "rent": {
         "period": "Ao dia",
-        "price": 220
-      },
+      "price": 220,
       "fuel_type": "hybrid_motor",
       "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/6.png",
       "accessories": [
@@ -282,7 +270,9 @@
         "2021-06-16",
         "2021-06-17",
         "2021-06-18",
-        "2023-03-24"
+        "2023-03-24",
+        "2023-04-01",
+        "2023-04-02"
       ]
     },
     {
@@ -397,10 +387,8 @@
         "brand": "Audi",
         "name": "RS 5 Coupé",
         "about": "O carro ainda tem sistema de tração nas quatro rodas Quattro com diferencial traseiro esportivo de série. De acordo com a Audi, ele faz o mesmo em 3,8 segundos na Sportback.",
-        "rent": {
           "period": "Ao dia",
-          "price": 120
-        },
+        "price": 120,
         "fuel_type": "electric",
         "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/1.png",
         "accessories": [
@@ -446,10 +434,8 @@
         "brand": "Chevrolet",
         "name": "Corvette Z06",
         "about": "O Chevrolet Corvette Z06 inclui freios Brembo de alto desempenho com pinças maiores no conjunto dianteiro, itens aerodinâmicos com capô de fibra de carbono, suspensão para alto desempenho.",
-        "rent": {
           "period": "Ao dia",
-          "price": 620
-        },
+        "price": 620,
         "fuel_type": "gasoline_motor",
         "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/3.png",
         "accessories": [
@@ -495,10 +481,8 @@
         "brand": "volvo",
         "name": "XC40",
         "about": "A Poderosa Combinação de um Motor Elétrico de Alto Desempenho e um Motor a Combustão. Compacto e Inovador. Com Design Expressivo, Tecnologias Intuitivas e Estilo Urbano.",
-        "rent": {
           "period": "Ao dia",
-          "price": 120
-        },
+        "price": 120,
         "fuel_type": "gasoline_motor",
         "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/5.png",
         "accessories": [
@@ -544,10 +528,8 @@
         "brand": "Porsche",
         "name": "Panamera",
         "about": "O Panamera é um automóvel de luxo coupé com porte grande. Tem motorização dianteira V6 e V8. A tração é integral com uma caixa PDK de sete mudanças e dupla embreagem.",
-        "rent": {
           "period": "Ao dia",
-          "price": 340
-        },
+        "price": 340,
         "fuel_type": "gasoline_motor",
         "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/2.png",
         "accessories": [
@@ -592,10 +574,8 @@
         "brand": "Porsche",
         "name": "Panamera",
         "about": "O Panamera é um automóvel de luxo coupé com porte grande. Tem motorização dianteira V6 e V8. A tração é integral com uma caixa PDK de sete mudanças e dupla embreagem.",
-        "rent": {
           "period": "Ao dia",
-          "price": 340
-        },
+        "price": 340,
         "fuel_type": "gasoline_motor",
         "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/2.png",
         "accessories": [
@@ -640,10 +620,8 @@
         "brand": "Chevrolet",
         "name": "Corvette Z06",
         "about": "O Chevrolet Corvette Z06 inclui freios Brembo de alto desempenho com pinças maiores no conjunto dianteiro, itens aerodinâmicos com capô de fibra de carbono, suspensão para alto desempenho.",
-        "rent": {
           "period": "Ao dia",
-          "price": 620
-        },
+        "price": 620,
         "fuel_type": "gasoline_motor",
         "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/3.png",
         "accessories": [
@@ -689,10 +667,8 @@
         "brand": "Chevrolet",
         "name": "Corvette Z06",
         "about": "O Chevrolet Corvette Z06 inclui freios Brembo de alto desempenho com pinças maiores no conjunto dianteiro, itens aerodinâmicos com capô de fibra de carbono, suspensão para alto desempenho.",
-        "rent": {
           "period": "Ao dia",
-          "price": 620
-        },
+        "price": 620,
         "fuel_type": "gasoline_motor",
         "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/3.png",
         "accessories": [

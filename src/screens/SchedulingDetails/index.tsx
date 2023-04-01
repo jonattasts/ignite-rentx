@@ -103,9 +103,7 @@ export function SchedulingDetails() {
                 params: {
                   title: "Carro alugado!",
                   screenToNavigate: "Home",
-                  message: `Agora você só precisa ir\n
-                  até a concessionária da RENTX\n
-                  pegar seu automóvel.`,
+                  message: `Agora você só precisa ir\naté a concessionária da RENTX\npegar seu automóvel.`,
                 },
               },
             ],
