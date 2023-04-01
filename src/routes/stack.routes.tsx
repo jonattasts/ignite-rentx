@@ -3,6 +3,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import { Splash } from "../screens/Splash";
 import { SignIn } from "../screens/SignIn";
+import { FirstStep } from "../screens/SignUp/FirstStep";
+import { SecondStep } from "../screens/SignUp/SecondStep";
 import { Home } from "../screens/Home";
 import { CarDetails } from "../screens/CarDetails";
 import { MyCars } from "../screens/MyCars";
@@ -17,6 +19,8 @@ export function AppStackRoutes() {
     <Navigator headerMode="none" initialRouteName="Splash">
       <Screen name="Splash" component={Splash} />
       <Screen name="SignIn" component={SignIn} />
+      <Screen name="SignUpFirstStep" component={FirstStep} />
+      <Screen name="SignUpSecondStep" component={SecondStep} />
       <Screen name="Home" component={Home} />
       <Screen name="CarDetails" component={CarDetails} />
       <Screen name="MyCars" component={MyCars} />
