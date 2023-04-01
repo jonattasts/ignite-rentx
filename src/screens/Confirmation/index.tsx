@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useWindowDimensions, StatusBar, BackHandler } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 
 import LogoSvg from "../../assets/logo_background_gray.svg";
@@ -20,9 +20,13 @@ interface Params {
 export function Confirmation() {
   const { width } = useWindowDimensions();
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const route = useRoute();
+
+  const { title, message, screenToNavigate } =
+    route.params as RootStackParamList["Confirmation"];
 
   function handleConfirm() {
-    navigation.navigate("Home");
+    navigation.navigate(screenToNavigate);
   }
 
   useEffect(() => {
@@ -43,13 +47,9 @@ export function Confirmation() {
 
       <Content>
         <DoneSvg width={80} height={80} />
-        <Title>Carro alugado!</Title>
+        <Title>{title}</Title>
 
-        <Message>
-          Agora você só precisa ir {"\n"}
-          até a concessionária da RENTX {"\n"}
-          pegar seu automóvel.
-        </Message>
+        {message && <Message>{message}</Message>}
       </Content>
 
       <Footer>

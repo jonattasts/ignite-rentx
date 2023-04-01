@@ -16,8 +16,8 @@ const { Navigator, Screen } = createStackNavigator();
 
 export function AppStackRoutes() {
   return (
-    <Navigator headerMode="none" initialRouteName="Splash">
-      <Screen name="Splash" component={Splash} />
+    <Navigator headerMode="none" initialRouteName="SignIn">
+      {/* <Screen name="Splash" component={Splash} /> */}
       <Screen name="SignIn" component={SignIn} />
       <Screen name="SignUpFirstStep" component={FirstStep} />
       <Screen name="SignUpSecondStep" component={SecondStep} />

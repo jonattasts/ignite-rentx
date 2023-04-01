@@ -26,22 +26,15 @@ import {
   Title,
 } from "./styles";
 
-interface Params {
-  user: {
-    name: string;
-    email: string;
-    driverLicense: string;
-  };
-}
-
 export function SecondStep() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const route = useRoute();
   const theme = useTheme();
+
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
-  const { user } = route.params as Params;
+  const { user } = route.params as RootStackParamList["SignUpSecondStep"];
 
   function handleGoBack() {
     if (navigation.canGoBack()) {

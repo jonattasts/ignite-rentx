@@ -1,14 +1,20 @@
-import { CarDTO } from "./../dtos/CarDTO";
+import {
+  CarDetailsParamList,
+  ConfirmationParamList,
+  SchedulingDetailsParamList,
+  SchedulingParamList,
+  SignUpSecondStepParamList,
+} from "./paramList.routes";
 
 export type RootStackParamList = {
   Splash: undefined;
   SignIn: undefined;
   SignUpFirstStep: undefined;
-  SignUpSecondStep: { user: {} };
+  SignUpSecondStep: SignUpSecondStepParamList;
   Home: undefined;
-  CarDetails: undefined | { car: CarDTO };
+  CarDetails: CarDetailsParamList;
   MyCars: undefined;
-  Scheduling: undefined | { car: CarDTO };
-  SchedulingDetails: undefined | { car: CarDTO; dates: string[] };
-  Confirmation: undefined | {};
+  Scheduling: SchedulingParamList;
+  SchedulingDetails: SchedulingDetailsParamList;
+  Confirmation: ConfirmationParamList;
 };
