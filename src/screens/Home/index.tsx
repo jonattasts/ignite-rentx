@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BackHandler, StatusBar, ToastAndroid } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
-import {
-  StackActions,
-  useNavigation,
-  useNavigationState,
-} from "@react-navigation/native";
+import { useNavigation, useNavigationState } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { useTheme } from "styled-components";
 
 import { Car } from "../../components/Car";
 import { LoadAnimation } from "../../components/LoadAnimation";
@@ -27,8 +22,6 @@ export function Home() {
   const [loading, setLoading] = useState(true);
   const [exitApp, setExitApp] = useState(false);
   const navigationState = useNavigationState((state) => state);
-
-  const theme = useTheme();
 
   const showToast = () => {
     ToastAndroid.show(

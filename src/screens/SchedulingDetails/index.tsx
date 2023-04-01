@@ -3,7 +3,11 @@ import { Alert, StatusBar } from "react-native";
 import { useTheme } from "styled-components";
 import { Feather } from "@expo/vector-icons";
 import { RFValue } from "react-native-responsive-fontsize";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import {
+  CommonActions,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
 import { format } from "date-fns";
 import { StackNavigationProp } from "@react-navigation/stack";
 
@@ -90,13 +94,23 @@ export function SchedulingDetails() {
         unavailable_dates,
       })
       .then(() => {
-        navigation.navigate("Confirmation", {
-          title: "Carro alugado!",
-          screenToNavigate: "Home",
-          message: `Agora você só precisa ir\n
-          até a concessionária da RENTX\n
-          pegar seu automóvel.`,
-        });
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [
+              {
+                name: "Confirmation",
+                params: {
+                  title: "Carro alugado!",
+                  screenToNavigate: "Home",
+                  message: `Agora você só precisa ir\n
+                  até a concessionária da RENTX\n
+                  pegar seu automóvel.`,
+                },
+              },
+            ],
+          })
+        );
       })
       .catch((erro) => {
         console.log(erro);

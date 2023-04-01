@@ -1,4 +1,8 @@
-import { useNavigation, useRoute } from "@react-navigation/native";
+import {
+  CommonActions,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React from "react";
 import { useState } from "react";
@@ -57,27 +61,40 @@ export function SecondStep() {
       const data = { password, passwordConfirmation };
       await schema.validate(data, { abortEarly: false });
 
-      await api.post("/users", {
-        name: user.name,
-        email: user.email,
-        driver_license: user.driverLicense,
-        password,
-      });
-
-      navigation.navigate("Confirmation", {
-        title: "Conta criada!",
-        screenToNavigate: "SignIn",
-        message: `Agora é só fazer login\ne aproveitar.`,
-      });
+      await api
+        .post("/users", {
+          name: user.name,
+          email: user.email,
+          driver_license: user.driverLicense,
+          password,
+        })
+        .then(() => {
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [
+                {
+                  name: "Confirmation",
+                  params: {
+                    title: "Conta criada!",
+                    screenToNavigate: "SignIn",
+                    message: `Agora é só fazer login\ne aproveitar.`,
+                  },
+                },
+              ],
+            })
+          );
+        })
+        .catch((error) => {
+          Alert.alert(
+            "Erro no cadastro",
+            "Ocorreu um erro ao fazer o cadastro, verifique as credenciais."
+          );
+        });
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         return Alert.alert("Opa", error.errors.join("\n"));
       }
-
-      return Alert.alert(
-        "Erro no cadastro",
-        "Ocorreu um erro ao fazer o cadastro, verifique as credenciais."
-      );
     }
   }
 

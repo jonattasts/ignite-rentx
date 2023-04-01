@@ -1,6 +1,12 @@
-import React, { useState } from "react";
-import { Alert, Platform, StatusBar } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
+import {
+  Alert,
+  BackHandler,
+  Platform,
+  StatusBar,
+  ToastAndroid,
+} from "react-native";
+import { useNavigation, useNavigationState } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import * as Yup from "yup";
 
@@ -22,8 +28,18 @@ import {
 export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [exitApp, setExitApp] = useState(false);
 
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const navigationState = useNavigationState((state) => state);
+
+  const showToast = () => {
+    ToastAndroid.show(
+      "Pressione novamente para sair do App!",
+      ToastAndroid.LONG
+    );
+  };
+
   async function handleSignIn() {
     try {
       const schema = Yup.object().shape({
@@ -50,6 +66,27 @@ export function SignIn() {
   function handleRegister() {
     navigation.navigate("SignUpFirstStep");
   }
+
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", () => {
+      if (navigationState.index === 0) {
+        if (exitApp) {
+          setExitApp(false);
+          BackHandler.exitApp();
+        } else {
+          showToast();
+          setExitApp(true);
+        }
+      } else {
+        setExitApp(false);
+        if (navigation.canGoBack()) {
+          navigation.goBack();
+        }
+      }
+
+      return true;
+    });
+  }, [navigationState, exitApp]);
 
   return (
     <KAV behavior={Platform.OS === "ios" ? "padding" : "height"}>
@@ -104,7 +141,10 @@ export function SignIn() {
             enabled={!!email && !!password}
           />
 
-          <RegisterButton title="Criar conta gratuita" onPress={handleRegister} />
+          <RegisterButton
+            title="Criar conta gratuita"
+            onPress={handleRegister}
+          />
         </Footer>
       </ScrollableContainer>
     </KAV>
