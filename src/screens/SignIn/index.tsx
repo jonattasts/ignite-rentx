@@ -104,7 +104,7 @@ export function SignIn() {
             enabled={!!email && !!password}
           />
 
-          <RegisterButton title="Criar conta gratuita" onPress={() => {}} />
+          <RegisterButton title="Criar conta gratuita" onPress={handleRegister} />
         </Footer>
       </ScrollableContainer>
     </KAV>
