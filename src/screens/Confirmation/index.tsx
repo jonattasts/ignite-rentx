@@ -1,5 +1,5 @@
-import React from "react";
-import { useWindowDimensions, StatusBar } from "react-native";
+import React, { useEffect } from "react";
+import { useWindowDimensions, StatusBar, BackHandler } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 
@@ -24,6 +24,12 @@ export function Confirmation() {
   function handleConfirm() {
     navigation.navigate("Home");
   }
+
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", () => {
+      return true;
+    });
+  }, []);
 
   return (
     <Container>
