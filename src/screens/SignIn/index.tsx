@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Alert, Platform, StatusBar } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import * as Yup from "yup";
 
+import { RootStackParamList } from "../../routes/types.routes";
 import {
   KAV,
   ScrollableContainer,
@@ -20,6 +23,7 @@ export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   async function handleSignIn() {
     try {
       const schema = Yup.object().shape({
@@ -41,6 +45,10 @@ export function SignIn() {
         "Ocorreu um erro ao fazer login, verifique as credenciais."
       );
     }
+  }
+
+  function handleRegister() {
+    navigation.navigate("SignUpFirstStep");
   }
 
   return (
