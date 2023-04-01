@@ -92,7 +92,7 @@ export function FirstStep() {
           </SubTitle>
 
           <Form>
-            <FormTitle>1. Dados</FormTitle>
+            <FormTitle>Seus dados</FormTitle>
 
             <NameInput
               iconName="user"

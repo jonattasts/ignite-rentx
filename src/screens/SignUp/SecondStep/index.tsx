@@ -117,7 +117,7 @@ export function SecondStep() {
           </SubTitle>
 
           <Form>
-            <FormTitle>2. Senha</FormTitle>
+            <FormTitle>Sua senha</FormTitle>
 
             <PasswordInput
               placeholder="Senha"
