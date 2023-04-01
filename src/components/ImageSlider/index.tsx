@@ -43,13 +43,14 @@ export function ImageSlider({ imagesUrl }: Props) {
         keyExtractor={(key) => key}
         showsHorizontalScrollIndicator={false}
         onViewableItemsChanged={indexChanged.current}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <CarImageWrapper>
             <CarImage
               source={{
                 uri: item,
               }}
               resizeMode="contain"
+              active={index === imageIndex}
             />
           </CarImageWrapper>
         )}

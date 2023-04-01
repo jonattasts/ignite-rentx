@@ -7,6 +7,10 @@ interface SliderBulletProps {
   isFirst: boolean;
 }
 
+interface CarImageProps {
+  active: boolean;
+}
+
 export const Container = styled.View`
   width: 100%;
 `;
@@ -32,7 +36,8 @@ export const CarImageWrapper = styled.View`
   align-items: center;
 `;
 
-export const CarImage = styled.Image`
+export const CarImage = styled.Image<CarImageProps>`
   width: 280px;
   height: 132px;
+  opacity: ${({ active }) => (active ? 1 : 0.5)};
 `;
