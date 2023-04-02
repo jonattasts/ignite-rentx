@@ -8,12 +8,18 @@ export interface CarDTO {
   fuel_type: string;
   thumbnail: string;
   accessories: AccessoryDTO[];
-  photos: string[];
+  photos: PhotoDTO[];
 }
 
 export interface AccessoryDTO {
+  id: string;
   type: string;
   name: string;
+}
+
+export interface PhotoDTO {
+  id: string;
+  photo: string;
 }
 
 export interface RentDTO {
