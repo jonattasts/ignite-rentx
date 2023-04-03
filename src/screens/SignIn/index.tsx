@@ -11,6 +11,9 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import * as Yup from "yup";
 
 import { RootStackParamList } from "../../routes/types.routes";
+
+import { useAuth } from "../../hooks/auth";
+
 import {
   KAV,
   ScrollableContainer,
@@ -28,10 +31,13 @@ import {
 export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [exitApp, setExitApp] = useState(false);
 
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const navigationState = useNavigationState((state) => state);
+
+  const { signIn } = useAuth();
 
   const showToast = () => {
     ToastAndroid.show(
@@ -50,8 +56,12 @@ export function SignIn() {
       });
 
       await schema.validate({ email, password }, { abortEarly: false });
-      Alert.alert("tudo certo");
+
+      setLoading(true);
+      await signIn({ email, password });
     } catch (error) {
+      setLoading(false);
+
       if (error instanceof Yup.ValidationError) {
         return Alert.alert("Opa", error.errors.join("\n"));
       }
@@ -139,6 +149,7 @@ export function SignIn() {
             title="Login"
             onPress={handleSignIn}
             enabled={!!email && !!password}
+            loading={loading}
           />
 
           <RegisterButton

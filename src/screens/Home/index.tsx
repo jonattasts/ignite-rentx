@@ -3,10 +3,10 @@ import { BackHandler, StatusBar, ToastAndroid } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useNavigation, useNavigationState } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import * as SplashScreen from "expo-splash-screen";
 
 import { Car } from "../../components/Car";
 import { LoadAnimation } from "../../components/LoadAnimation";
-import { AnimatedFloatingButton } from "../../components/AnimatedFloatingButton";
 
 import Logo from "../../assets/logo.svg";
 import { RootStackParamList } from "../../routes/types.routes";
@@ -46,10 +46,6 @@ export function Home() {
     }
   }
 
-  function handleOpenMyCars() {
-    navigation.navigate("MyCars");
-  }
-
   useEffect(() => {
     fetchCars();
   }, []);
@@ -74,6 +70,14 @@ export function Home() {
       return true;
     });
   }, [navigationState, exitApp]);
+
+  useEffect(() => {
+    async function hideSplash() {
+      await SplashScreen.hideAsync();
+    }
+
+    hideSplash();
+  }, []);
 
   return (
     <Container>
@@ -100,13 +104,6 @@ export function Home() {
           renderItem={({ item }) => (
             <Car data={item} onPress={() => handleCarDetails(item)} />
           )}
-        />
-      )}
-
-      {!loading && (
-        <AnimatedFloatingButton
-          icon="ios-car-sport"
-          onPress={handleOpenMyCars}
         />
       )}
     </Container>
