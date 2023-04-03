@@ -108,41 +108,43 @@ export function MyCars() {
             <AppointmentsQuantity>{cars.length}</AppointmentsQuantity>
           </Appointments>
 
-          <FlatList
-            data={cars}
-            keyExtractor={(item) => String(item.id)}
-            showsVerticalScrollIndicator={false}
-            renderItem={({ item }) => (
-              <CarWrapper>
-                <Car data={item.car} />
-                <CarFooter>
-                  <CarFooterTitle>Período</CarFooterTitle>
+          {cars.length > 0 && (
+            <FlatList
+              data={cars}
+              keyExtractor={(item) => String(item.id)}
+              showsVerticalScrollIndicator={false}
+              renderItem={({ item }) => (
+                <CarWrapper>
+                  <Car data={item.car} />
+                  <CarFooter>
+                    <CarFooterTitle>Período</CarFooterTitle>
 
-                  <CarFooterPeriod>
-                    <CarFooterDate>{item.startDate}</CarFooterDate>
-                    <AntDesign
-                      name="arrowright"
-                      size={20}
-                      color={theme.colors.title}
-                      style={{ marginHorizontal: 10 }}
-                    />
-                    <CarFooterDate>{item.endDate}</CarFooterDate>
-                  </CarFooterPeriod>
-                </CarFooter>
-              </CarWrapper>
-            )}
-            onScroll={(event) => {
-              const isAtEnd =
-                event.nativeEvent.contentOffset.y +
-                  event.nativeEvent.layoutMeasurement.height >
-                event.nativeEvent.contentSize.height;
+                    <CarFooterPeriod>
+                      <CarFooterDate>{item.startDate}</CarFooterDate>
+                      <AntDesign
+                        name="arrowright"
+                        size={20}
+                        color={theme.colors.title}
+                        style={{ marginHorizontal: 10 }}
+                      />
+                      <CarFooterDate>{item.endDate}</CarFooterDate>
+                    </CarFooterPeriod>
+                  </CarFooter>
+                </CarWrapper>
+              )}
+              onScroll={(event) => {
+                const isAtEnd =
+                  event.nativeEvent.contentOffset.y +
+                    event.nativeEvent.layoutMeasurement.height >
+                  event.nativeEvent.contentSize.height;
 
-              if (!isAtEndList && isAtEnd) {
-                setIsAtEndList(isAtEnd);
-              }
-            }}
-            ListFooterComponent={() => !isAtEndList && <Load />}
-          />
+                if (!isAtEndList && isAtEnd) {
+                  setIsAtEndList(isAtEnd);
+                }
+              }}
+              ListFooterComponent={() => !isAtEndList && <Load />}
+            />
+          )}
         </Content>
       )}
     </Container>
