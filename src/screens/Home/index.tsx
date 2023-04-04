@@ -18,7 +18,7 @@ import { CarList, Container, Header, HeaderContent, TotalCars } from "./styles";
 
 export function Home() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
-  const [cars, setCars] = useState<CarDTO[]>();
+  const [cars, setCars] = useState<CarDTO[]>([] as CarDTO[]);
   const [loading, setLoading] = useState(true);
   const [exitApp, setExitApp] = useState(false);
   const navigationState = useNavigationState((state) => state);
@@ -34,20 +34,28 @@ export function Home() {
     navigation.navigate("CarDetails", { car: car });
   }
 
-  async function fetchCars() {
-    try {
-      const response = await api.get("cars");
-
-      setCars(response.data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
+    let mounted = true;
+
+    async function fetchCars() {
+      try {
+        const response = await api.get("cars");
+
+        if (mounted) {
+          setCars(response.data);
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
     fetchCars();
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   useEffect(() => {
