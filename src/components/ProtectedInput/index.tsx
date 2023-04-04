@@ -50,6 +50,7 @@ export function ProtectedInput({ style, value, ...rest }: ProtectedInputProps) {
       </IconContainer>
 
       <InputText
+        autoCorrect={false}
         placeholderTextColor={theme.colors.text_detail}
         secureTextEntry={isTextEntrySecured}
         onFocus={handleInputFocus}
