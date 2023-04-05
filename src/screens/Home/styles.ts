@@ -3,7 +3,7 @@ import { FlatList } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { RectButton } from "react-native-gesture-handler";
 
-import { CarDTO } from "../../dtos/CarDTO";
+import { Car as ModelCar } from "../../database/model/Car";
 
 export const Container = styled.View`
   flex: 1;
@@ -36,7 +36,7 @@ export const CarList = styled(FlatList).attrs({
     padding: 24,
   },
   showsVerticalScrollIndicator: false,
-})`` as React.ComponentType as new <CarDTO>() => FlatList<CarDTO>;
+})`` as React.ComponentType as new <ModelCar>() => FlatList<ModelCar>;
 
 export const MyCarsButton = styled(RectButton)`
   position: absolute;
