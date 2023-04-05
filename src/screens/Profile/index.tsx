@@ -10,6 +10,7 @@ import {
 import { useTheme } from "styled-components";
 import * as ImagePicker from "expo-image-picker";
 import * as Yup from "yup";
+import { useNetInfo } from "@react-native-community/netinfo";
 
 import { BackButton } from "../../components/BackButton";
 import { Button } from "../../components/Button";
@@ -48,13 +49,21 @@ export function Profile() {
 
   const theme = useTheme();
   const navigation = useNavigation();
+  const netInfo = useNetInfo();
 
   function handleBack() {
     navigation.goBack();
   }
 
   function handleOptionChange(optionSelected: "dataEdit" | "passwordEdit") {
-    setOption(optionSelected);
+    if (netInfo.isConnected === false && optionSelected === "passwordEdit") {
+      Alert.alert(
+        "Você está offline",
+        "Para mudar a senha, conecte-se a Internet"
+      );
+    } else {
+      setOption(optionSelected);
+    }
   }
 
   async function handleAvatarSelect() {
