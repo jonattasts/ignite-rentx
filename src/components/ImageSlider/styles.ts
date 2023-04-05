@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components/native";
 import { Dimensions } from "react-native";
+import FastImage from "react-native-fast-image";
 
 import { Bullet } from "../Bullet";
 
@@ -36,7 +37,7 @@ export const CarImageWrapper = styled.View`
   align-items: center;
 `;
 
-export const CarImage = styled.Image<CarImageProps>`
+export const CarImage = styled(FastImage)<CarImageProps>`
   width: 280px;
   height: 132px;
   opacity: ${({ active }) => (active ? 1 : 0.5)};
