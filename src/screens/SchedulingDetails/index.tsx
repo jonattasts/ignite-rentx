@@ -49,11 +49,6 @@ import {
   RentalPriceTotal,
 } from "./styles";
 
-interface Params {
-  car: CarDTO;
-  dates: string[];
-}
-
 interface RentalPeriod {
   start: string;
   end: string;
@@ -68,7 +63,8 @@ export function SchedulingDetails() {
   const theme = useTheme();
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const route = useRoute();
-  const { car, dates } = route.params as Params;
+  const { car, dates } =
+    route.params as RootStackParamList["SchedulingDetails"];
   const rentTotal = Number(dates.length * car.price);
 
   async function handleConfirmRental() {
@@ -78,8 +74,8 @@ export function SchedulingDetails() {
       .post("/rentals", {
         user_id: 1,
         car_id: car.id,
-        startDate: rentalPeriod.start,
-        endDate: rentalPeriod.end,
+        start_date: getPlatformDate(new Date(dates[0])),
+        end_date: getPlatformDate(new Date(dates[dates.length - 1])),
         total: rentTotal,
       })
       .then(() => {

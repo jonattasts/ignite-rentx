@@ -3,6 +3,7 @@ import { UserDTO } from "../dtos/UserDTO";
 
 export interface CarDetailsParamList {
   car: CarDTO;
+  isScheduleable?: boolean;
 }
 
 export interface SchedulingParamList extends CarDetailsParamList {}
@@ -17,16 +18,6 @@ export interface SignUpSecondStepParamList {
 
 export interface ConfirmationParamList {
   title: string;
-  screenToNavigate:
-    | "Splash"
-    | "SignIn"
-    | "SignUpFirstStep"
-    | "SignUpSecondStep"
-    | "Home"
-    | "CarDetails"
-    | "MyCars"
-    | "Scheduling"
-    | "SchedulingDetails"
-    | "Confirmation";
+  screenToNavigate: "SignIn" | "Home";
   message?: string;
 }

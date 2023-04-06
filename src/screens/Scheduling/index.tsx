@@ -38,10 +38,6 @@ interface RentalPeriod {
   endFormatted: string;
 }
 
-interface Params {
-  car: CarDTO;
-}
-
 export function Scheduling() {
   const [lastSelectedDate, setLastSelectedDate] = useState<DayProps>(
     {} as DayProps
@@ -56,7 +52,7 @@ export function Scheduling() {
   const route = useRoute();
   const theme = useTheme();
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
-  const { car } = route.params as Params;
+  const { car } = route.params as RootStackParamList["Scheduling"];
 
   function handleConfirmRental() {
     navigation.navigate("SchedulingDetails", {

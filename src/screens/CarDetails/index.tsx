@@ -41,10 +41,6 @@ import {
   OfflineInfo,
 } from "./styles";
 
-interface Params {
-  car: CarDTO;
-}
-
 export function CarDetails() {
   const [car, setCar] = useState<CarDTO>({} as CarDTO);
   const [isConnected, setIsConnected] = useState<boolean | null>(true);
@@ -54,6 +50,9 @@ export function CarDetails() {
   const route = useRoute();
   const theme = useTheme();
   const netInfo = useNetInfo();
+
+  const { car: carSelected, isScheduleable } =
+    route.params as RootStackParamList["CarDetails"];
 
   const scrollY = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler((event) => {
@@ -90,10 +89,8 @@ export function CarDetails() {
   }, [netInfo.isConnected]);
 
   useEffect(() => {
-    const { car } = route.params as Params;
-
     async function fetchOnlineData() {
-      const response = await api.get(`cars/${car.id}`);
+      const response = await api.get(`cars/${carSelected.id}`);
 
       setCar(response.data);
       setLoading(false);
@@ -102,7 +99,7 @@ export function CarDetails() {
     if (isConnected) {
       fetchOnlineData();
     } else if (isConnected === false) {
-      setCar(car);
+      setCar(carSelected);
 
       setTimeout(() => {
         setLoading(false);
@@ -182,13 +179,15 @@ export function CarDetails() {
             <About>{car.about}</About>
           </Animated.ScrollView>
           <Footer>
-            <Button
-              enabled={!!isConnected}
-              title="Escolher período do aluguel"
-              onPress={handleConfirmRental}
-            />
+            {isScheduleable && (
+              <Button
+                enabled={!!isConnected}
+                title="Escolher período do aluguel"
+                onPress={handleConfirmRental}
+              />
+            )}
 
-            {isConnected === false && (
+            {isScheduleable && isConnected === false && (
               <OfflineInfo>
                 Conecte-se a internet para ver mais detalhes e agendar seu
                 carro.
