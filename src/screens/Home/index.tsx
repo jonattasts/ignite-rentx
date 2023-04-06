@@ -7,18 +7,17 @@ import * as SplashScreen from "expo-splash-screen";
 import { useNetInfo } from "@react-native-community/netinfo";
 import { synchronize } from "@nozbe/watermelondb/sync";
 
-import { database } from "../../database";
-import { api } from "../../services/api";
-import { Car as ModelCar } from "../../database/model/Car";
-
 import { Car } from "../../components/Car";
 import { LoadAnimation } from "../../components/LoadAnimation";
 
 import Logo from "../../assets/logo.svg";
+import { database } from "../../database";
+import { api } from "../../services/api";
+import { Car as ModelCar } from "../../database/model/Car";
 import { RootStackParamList } from "../../routes/types.routes";
+import { serializeCar } from "../../utils/serializeCar";
 
 import { CarList, Container, Header, HeaderContent, TotalCars } from "./styles";
-import { CarDTO } from "../../dtos/CarDTO";
 
 export function Home() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -35,27 +34,13 @@ export function Home() {
     );
   };
 
-  function serializeCar(car: ModelCar) {
-    const { id, brand, name, about, period, price, fuel_type, thumbnail } = car;
-
-    const carSerialized = {
-      id,
-      brand,
-      name,
-      about,
-      period,
-      price,
-      fuel_type,
-      thumbnail,
-    };
-
-    return carSerialized as CarDTO;
-  }
-
   function handleCarDetails(car: ModelCar) {
     const carSerialized = serializeCar(car);
 
-    navigation.navigate("CarDetails", { car: carSerialized });
+    navigation.navigate("CarDetails", {
+      car: carSerialized,
+      isScheduleable: true,
+    });
   }
 
   async function fetchCars() {
