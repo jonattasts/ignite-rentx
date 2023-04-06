@@ -103,7 +103,10 @@ export function CarDetails() {
       fetchOnlineData();
     } else if (isConnected === false) {
       setCar(car);
-      setLoading(false);
+
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     }
   }, [isConnected]);
 

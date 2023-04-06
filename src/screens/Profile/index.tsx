@@ -139,8 +139,6 @@ export function Profile() {
   }
 
   async function handleSignOut() {
-    console.log("onPress");
-
     Alert.alert(
       "Tem certeza?",
       "Se você sair, irá precisar de internet para conectar-se novamente.",
