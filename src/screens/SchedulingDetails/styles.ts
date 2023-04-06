@@ -89,7 +89,7 @@ export const RentalPeriod = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 25px;
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme }) => theme.colors.line};
   padding-bottom: 16px;
