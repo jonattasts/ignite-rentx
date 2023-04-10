@@ -1,5 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import HomeSvg from "../assets/home.svg";
 import PeopleSvg from "../assets/people.svg";
@@ -15,6 +16,7 @@ const { Navigator, Screen } = createBottomTabNavigator();
 
 export function AppTabRoutes() {
   const theme = useTheme();
+  const insets = useSafeAreaInsets();
 
   return (
     <Navigator
@@ -23,7 +25,8 @@ export function AppTabRoutes() {
         tabBarInactiveTintColor: theme.colors.text_detail,
         tabBarShowLabel: false,
         tabBarStyle: {
-          paddingVertical: getBottomSpace(),
+          paddingTop: 20,
+          paddingBottom: 20 + insets.bottom,
           height: 78,
           backgroundColor: theme.colors.background_primary,
         },

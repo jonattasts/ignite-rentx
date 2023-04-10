@@ -12,6 +12,7 @@ import {
 } from "@expo-google-fonts/archivo";
 import * as SplashScreen from "expo-splash-screen";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { Routes } from "./src/routes";
 import { AppProvider } from "./src/hooks";
@@ -36,9 +37,11 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider theme={theme}>
-        <AppProvider>
-          <Routes />
-        </AppProvider>
+        <SafeAreaProvider>
+          <AppProvider>
+            <Routes />
+          </AppProvider>
+        </SafeAreaProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
   );
