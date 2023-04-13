@@ -50,7 +50,7 @@ export function FirstStep() {
       const data = { name, email, driverLicense };
       await schema.validate(data, { abortEarly: false });
 
-        navigation.navigate("SignUpSecondStep", { user: data });
+      navigation.navigate("SignUpSecondStep", { user: data });
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         return Alert.alert("Opa", error.errors.join("\n"));
@@ -127,3 +127,6 @@ export function FirstStep() {
     </Container>
   );
 }
+
+//TODO: Criar uma página unica para o Sign Up e ao invés de trocar de tela
+// trocar de componentes com animações quando avançar o cadastro
